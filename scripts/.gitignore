@@ -1,0 +1,13 @@
+email.txt
+*.json
+!project.json
+
+# Ignore the binary and object files as well as the backups
+backups/*
+!backups/.gitkeep
+
+obj/*
+!obj/.gitkeep
+
+bin/*
+!bin/.gitkeep

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  scripts:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile
+      
+    network_mode: bridge
+    depends_on:
+      - sqldata
+
+  sqldata: 
+    image: mariadb:latest
+    restart: always
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "crypto"
+    volumes: 
+      - ./data:/var/lib/mysql
+
+
+      
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

@@ -1,0 +1,17 @@
+###LINKS###
+
+Setting up a null client for postfix
+https://www.rootusers.com/configure-postfix-to-forward-mail-to-a-central-relay-server/
+
+Postfix documentation
+https://www.postfix.org/BASIC_CONFIGURATION_README.html
+
+Make docker images smaller
+https://symflower.com/en/company/blog/2022/complete-guide-on-shrinking-container-images/
+
+Adminer for the database overview
+http://localhost:8080/
+
+Postfix docker container and github for run command
+https://hub.docker.com/r/juanluisbaptiste/postfix
+https://github.com/juanluisbaptiste/docker-postfix/blob/master/run.sh

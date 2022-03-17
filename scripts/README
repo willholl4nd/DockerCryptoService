@@ -1,0 +1,71 @@
+### README ###
+
+This project is going to be a dashboard/service for getting prices of crypto 
+currencies. This project will only be for Linux and macOS systems.
+
+My initial plan for this project was to just create an email service that 
+would send me an email at the end of the day for the OHLCV which means
+"Open High Low Close Volume." Then I thought about what would be missing from 
+the report, and the daily average was the first thing that came to mind.
+
+To solve the problem of getting the daily average, making a program to run as 
+a daemon process to grab data from an API and store it in a database is the 
+easiest solution that came to mind. This database will have procedures to grab
+the average value and one to also purge the data that passes the day expiration
+period (since I only want the daily average).
+
+---Future plans---
+-Add support for multiple email addresses via command-line (Done)
+-Correct plotting issues (Done)
+-Add ability to control what time of day email is sent out from project.json (Done)
+-Add support for email addresses inside the project json  (Done)
+-Add more stats (median, standard deviation, variance, etc)
+-Add ability to choose number of days the stats are run on, ex. 5-day average, 1-month average 
+-Create docker container for project
+-List supported cryptocurrencies that can be added
+-Add database layout
+
+
+Components and their use: 
+- curl.cpp: Handles the curl request and the storage of the API response in a 
+json file. 
+
+- email.cpp: This file will deal with the crafting of the email and sending that
+email to the dedicated email passed in as command line arguments.
+
+- graph.cpp: This file will be what creates the graph from the database 
+information.
+
+- json.cpp: This file does all of the json parsing that is needed to grab 
+the data from the API response, as well as the project information json.
+
+- main.cpp: This is where the program will start and control the flow.
+
+- mysql.cpp: We will handle all of the SQL requests here.
+
+---Usage---
+1. Make sure all packages listed below are installed and setup
+2. Import the MySQL tables into local MySQL server from the crypto.sql file
+3. Compile the project using make
+4. Run the project with emails as command-line arguments (for now)
+5. Add "* * * * * cd /path/to/project && ./bin/main {email addresses here}" to run in crontab
+6. Add customizations to project.json file to include MySQL login information,
+extra cryptocurrency tracking, and your own API_key to the free LunarCRUSH api
+
+
+---Note---
+If you want to add more cryptocurrency tracking, you must create tables in a similar template 
+to those already created. Name of table and name of price column do not matter because 
+they are specified in the project json file, but they must be the same type. 
+You also need to have a column called "time_created" with a datetime type.
+You must do this before the prices will be tracked and emailed out in a report.
+
+
+###IMPORTANT INSTALLATION INFO###
+Install the following programs/packages:
+mariadb
+curl
+json-c
+crontab
+libmgl
+postfix

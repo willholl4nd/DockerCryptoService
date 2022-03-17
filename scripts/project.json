@@ -1,0 +1,15 @@
+{
+        "APIKey": "lwak88n3v8ffborjocso8w",
+        "Hostname": "localhost",
+        "Database": "crypto",
+        "Symbols": ["ETH", "BTC"],
+        "Tables": ["ETH_data", "BTC_data"],
+        "Columns": ["price", "price"],
+        "Username": "root",
+        "Password": "password",
+        "Port": 3306,
+        "Hour": 1,
+        "Minute": 20,
+        "Emails": [""]
+}
+        
