@@ -1,5 +1,6 @@
 import json
 import os
+import time
 import re
 import subprocess
 
@@ -36,7 +37,8 @@ def change_project_json(ip):
         obj = json.load(j)
         obj["Hostname"] = ip
 
-        os.system(f'mysql -u {obj["Username"]} -p{obj["Password"]} -h {ip} {obj["Database"]} < crypto.sql')
+        code = os.system(f'mysql -u{obj["Username"]} -p{obj["Password"]} -h{ip} {obj["Database"]} < crypto.sql')
+        print(f'mysql command executed with code {code}')
 
     #Opens json file for writing updated file
     with open("project.json", "w") as j:
@@ -52,8 +54,12 @@ def change_postfix_conf(ip):
     os.system('rm -f /var/spool/postfix/pid/master.pid')
     os.system('exec /usr/sbin/postfix start')
 
+
+
+
 if __name__ == "__main__":
 
+    time.sleep(30)
     mariadb_ip = openPorts(3306)
     postfix_ip = openPorts(25)
 
