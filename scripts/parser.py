@@ -44,7 +44,7 @@ def change_project_json(ip):
 
 
 def change_postfix_conf(ip):
-    #os.system(f'postconf -e "myhostname"="{os.environ["HOSTNAME"]}"')
+    os.system(f'postconf -e "myhostname"="{os.environ["HOSTNAME"]}"')
     os.system(f'postconf -e "relayhost"="{ip}"')
     os.system(f'postconf -e "inet_interfaces"="loopback-only"')
     os.system(f'postconf -e "local_transport"="error: local delivery disabled"')
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     postfix_ip = openPorts(25)
 
     change_project_json(mariadb_ip)
-    change_postfix_conf(postfix_ip)
+    #change_postfix_conf(postfix_ip)
 
 
 

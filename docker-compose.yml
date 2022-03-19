@@ -8,9 +8,14 @@ services:
       
     depends_on:
       - sqldata
-      - postfix
 
     network_mode: bridge
+    privileged: true
+    environment: 
+      SMTP_SERVER: smtp.gmail.com 
+      SMTP_USERNAME: (Insert gmail address)
+      SMTP_PASSWORD: (Insert generated app password)
+      SERVER_HOSTNAME: docker.cryptoservice
 
 
   sqldata: 
@@ -36,13 +41,3 @@ services:
     depends_on:
       - sqldata
 
-  postfix:
-    image: juanluisbaptiste/postfix:latest
-    network_mode: bridge
-
-    environment: 
-      SMTP_SERVER: smtp.gmail.com 
-      SMTP_USERNAME: (Insert username of email)
-      SMTP_PASSWORD: (Insert generated app password)
-      SERVER_HOSTNAME: localhost
-      SERVER_NETWORKS: 172.17.0.1/24
