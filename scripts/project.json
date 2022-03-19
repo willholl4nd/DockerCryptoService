@@ -8,8 +8,8 @@
         "Username": "root",
         "Password": "password",
         "Port": 3306,
-        "Hour": 1,
-        "Minute": 20,
+        "Hour": 0,
+        "Minute": 0,
         "Emails": [""]
 }
         

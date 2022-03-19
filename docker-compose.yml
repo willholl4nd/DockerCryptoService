@@ -40,4 +40,3 @@ services:
     network_mode: bridge
     depends_on:
       - sqldata
-
