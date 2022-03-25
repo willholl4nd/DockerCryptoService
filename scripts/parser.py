@@ -5,7 +5,7 @@ import re
 import subprocess
 
 def openPorts(port):
-    output = subprocess.check_output(f"nmap -n -p {port} 172.17.0.0/24", shell=True).decode()
+    output = subprocess.check_output(f"nmap -n -p {port} 172.16.0.0/24", shell=True).decode()
 
     split = [i for i in output.split("\n") if len(i) > 1]
     ips = []
@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
     time.sleep(30)
     mariadb_ip = openPorts(3306)
-    postfix_ip = openPorts(25)
+    #postfix_ip = openPorts(25)
 
     change_project_json(mariadb_ip)
     #change_postfix_conf(postfix_ip)

@@ -9,7 +9,8 @@ services:
     depends_on:
       - sqldata
 
-    network_mode: bridge
+    networks: 
+      - mynet
     privileged: true
     environment: 
       SMTP_SERVER: smtp.gmail.com 
@@ -28,7 +29,8 @@ services:
     volumes: 
       - ./data:/var/lib/mysql
 
-    network_mode: bridge
+    networks: 
+      - mynet
 
 
 
@@ -37,6 +39,16 @@ services:
     restart: always
     ports:
       - 8080:8080
-    network_mode: bridge
+    networks: 
+      - mynet
     depends_on:
       - sqldata
+
+networks:
+  mynet:
+    driver: bridge
+    ipam: 
+      driver: default
+      config: 
+        - subnet: "172.16.0.0/24"
+    
