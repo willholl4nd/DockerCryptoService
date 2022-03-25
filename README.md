@@ -73,6 +73,14 @@ for the database (defaults to US/Eastern).
     from inside your gmail security settings. This is required for postfix to 
     redirect mail through gmail's SMTP servers.
 
+    * networks: <br>
+
+    The subnet field under the mynet in the networks creation is changed from the default 
+    bridge subnet of 172.17.0.0/24 to avoid any possible interference. If you are 
+    using the current subnet of 172.16.0.0/24 for different docker containers,
+    you can change it here, but you must also edit the parser.py file inside the
+    scripts folder. It uses nmap to find the IPV4 for the sqldata container.
+
 ### Running the project 
 After the project is installed and setup, all you need to do is run:
 ```bash

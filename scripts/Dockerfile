@@ -1,9 +1,5 @@
 FROM ubuntu:latest
 
-#Set working directory in container and copy all contents there
-WORKDIR /usr/src/app
-COPY . .
-
 ENV TZ=US/Eastern
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -16,6 +12,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt install syslog-ng libsasl2-modules ca-cer
 postfix mutt python3 apt-utils nmap make libmgl-dev libmariadb-dev mariadb-client \
 libjson-c-dev libcurl4-openssl-dev libmgl-dev curl g++ bash -yq --no-install-recommends \ 
 && rm -rf /var/lib/apt/lists/*
+
+#Set working directory in container and copy all contents there
+WORKDIR /usr/src/app
+COPY . .
 
 #Make the project with current libraries
 RUN make
