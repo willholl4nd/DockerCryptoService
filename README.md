@@ -52,6 +52,7 @@ and price column name to the project.json file. This file also contains the time
 for the database (defaults to US/Eastern).
 
 **NOTE:** The cryptocurrency symbol must be compatible with the API we are using.
+You can find the supported symbols at this [link](https://lunarcrush.com/markets?col=1&metric=social_score).
 
 #### Outer directory
 
